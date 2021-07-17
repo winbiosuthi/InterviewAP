@@ -1,1 +1,154 @@
-<p>data-dict works!</p>
+<div class="container-fluid p-4">
+    <div class="d-flex flex-row flex-wrap">
+        <div class="col-md-6 p-4">
+            <div class="card">
+                <div class="card-header">
+                    Customer
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-column">
+                        <span class="card-text font-weight-bold">Id: Int (PK)</span>
+                        <span class="card-text">Title: String</span>
+                        <span class="card-text">FirstName: String</span>
+                        <span class="card-text">LastName: String</span>
+                        <span class="card-text">PhoneNumber: String</span>
+                        <span class="card-text">Email: String</span>
+                        <span class="card-text">Status: String</span>
+                        <span class="card-text">CreateBy: String</span>
+                        <span class="card-text">UpdateBy: String</span>
+                        <span class="card-text">CreateDate: Date</span>
+                        <span class="card-text">UpdateDate: Date</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-4">
+            <div class="card">
+                <div class="card-header">
+                    Address
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-column">
+                        <span class="card-text font-weight-bold">Id: Int (PK)</span>
+                        <span class="card-text">AddressNumber: String</span>
+                        <span class="card-text">Street: String</span>
+                        <span class="card-text">SubDistrict: String</span>
+                        <span class="card-text">District: String</span>
+                        <span class="card-text">Province: String</span>
+                        <span class="card-text">ZipCode: String</span>
+                        <span class="card-text">Status: String</span>
+                        <span class="card-text">CreateBy: String</span>
+                        <span class="card-text">UpdateBy: String</span>
+                        <span class="card-text">CreateDate: Date</span>
+                        <span class="card-text">UpdateDate: Date</span>
+                        <span class="card-text font-weight-bold">CustomerId: Int (FK)</span>
+                        <span class="card-text font-weight-bold">ProjectId: Int (FK)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-4">
+            <div class="card">
+                <div class="card-header">
+                    Project
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-column">
+                        <span class="card-text font-weight-bold">Id: Int (PK)</span>
+                        <span class="card-text">ProjectName: String</span>
+                        <span class="card-text">Detail: String</span>
+                        <span class="card-text">Type: String</span>
+                        <span class="card-text">Status: String</span>
+                        <span class="card-text">CreateBy: String</span>
+                        <span class="card-text">UpdateBy: String</span>
+                        <span class="card-text">CreateDate: Date</span>
+                        <span class="card-text">UpdateDate: Date</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-4">
+            <div class="card">
+                <div class="card-header">
+                    Request
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-column">
+                        <span class="card-text font-weight-bold">Id: Int (PK)</span>
+                        <span class="card-text">Subject: String</span>
+                        <span class="card-text">Detail: String</span>
+                        <span class="card-text">SubmitDate: Date</span>
+                        <span class="card-text">Status: String</span>
+                        <span class="card-text">CreateBy: String</span>
+                        <span class="card-text">UpdateBy: String</span>
+                        <span class="card-text">CreateDate: Date</span>
+                        <span class="card-text">UpdateDate: Date</span>
+                        <span class="card-text font-weight-bold">CustomerId: Int (FK)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-4">
+            <div class="card">
+                <div class="card-header">
+                    Attachment
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-column">
+                        <span class="card-text font-weight-bold">Id: Int (PK)</span>
+                        <span class="card-text">Path: String</span>
+                        <span class="card-text">Status: String</span>
+                        <span class="card-text">CreateBy: String</span>
+                        <span class="card-text">UpdateBy: String</span>
+                        <span class="card-text">CreateDate: Date</span>
+                        <span class="card-text">UpdateDate: Date</span>
+                        <span class="card-text font-weight-bold">RequestId: Int (FK)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-4">
+            <div class="card">
+                <div class="card-header">
+                    Information
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-column">
+                        <span class="card-text font-weight-bold">RequestId: Int (PK)</span>
+                        <span class="card-text">InformationType: String</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-4">
+            <div class="card">
+                <div class="card-header">
+                    Complain
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-column">
+                        <span class="card-text font-weight-bold">RequestId: Int (PK)</span>
+                        <span class="card-text">ComplainType: String</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-4">
+            <div class="card">
+                <div class="card-header">
+                    Repairing
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-column">
+                        <span class="card-text font-weight-bold">RequestId: Int (PK)</span>
+                        <span class="card-text">RepairingType: String</span>
+                        <span class="card-text">Problem: String</span>
+                        <span class="card-text">Project: String</span>
+                        <span class="card-text font-weight-bold">ProjectId: Int (FK)</span>
+                        <span class="card-text font-weight-bold">AddressId: Int (FK)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
