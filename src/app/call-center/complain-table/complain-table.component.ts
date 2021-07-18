@@ -19,8 +19,15 @@ export class ComplainTableComponent implements OnInit {
     this.total$ = complainTableService.total$;
     this.customerId = 0;
   }
+
   ngOnInit(): void {
     this.complainTableService.customerId = this.customerId;
+  }
+
+  openModal(complain: Complain) {
+    this.complainTableService.openModal(complain, this.customerId)
+      .then(() => this.complainTableService.reload())
+      .catch(() => { });
   }
 
 }

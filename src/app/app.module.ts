@@ -9,13 +9,14 @@ import { DataDictComponent } from './data-dict/data-dict.component';
 import { CallCenterComponent } from './call-center/call-center.component';
 import { CustomerTableComponent } from './call-center/customer-table/customer-table.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CustomerRequestComponent } from './call-center/customer-request/customer-request.component';
 import { CustomerProfileComponent } from './call-center/customer-profile/customer-profile.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CommonModule } from '@angular/common';
 import { InformationTableComponent } from './call-center/information-table/information-table.component';
 import { ComplainTableComponent } from './call-center/complain-table/complain-table.component';
 import { RepairTableComponent } from './call-center/repair-table/repair-table.component';
+import { ComplainComponent } from './call-center/complain/complain.component';
+import { InformationComponent } from './call-center/information/information.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +25,12 @@ import { RepairTableComponent } from './call-center/repair-table/repair-table.co
     DataDictComponent,
     CallCenterComponent,
     CustomerTableComponent,
-    CustomerRequestComponent,
     CustomerProfileComponent,
     InformationTableComponent,
     ComplainTableComponent,
-    RepairTableComponent
+    RepairTableComponent,
+    ComplainComponent,
+    InformationComponent
   ],
   imports: [
     CommonModule,

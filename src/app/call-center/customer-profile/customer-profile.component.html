@@ -63,7 +63,7 @@
             <h5>Information Request</h5>
             <div class="search-result text-center px-5 mt-4">
                 <div class="d-flex flex-row-reverse">
-                    <button class="btn btn-link">Create</button>
+                    <button class="btn btn-link" (click)="createInformation()">Create</button>
                 </div>
                 <information-table [customerId]="customerId"></information-table>
             </div>
@@ -72,7 +72,7 @@
             <h5>Complain Request</h5>
             <div class="search-result text-center px-5 mt-4">
                 <div class="d-flex flex-row-reverse">
-                    <button class="btn btn-link">Create</button>
+                    <button class="btn btn-link" (click)="createComplain()">Create</button>
                 </div>
                 <complain-table [customerId]="customerId"></complain-table>
             </div>

@@ -20,8 +20,15 @@ export class InformationTableComponent implements OnInit {
     this.total$ = informationTableService.total$;
     this.customerId = 0;
   }
+
   ngOnInit(): void {
     this.informationTableService.customerId = this.customerId;
+  }
+
+  openModal(information: Information) {
+    this.informationTableService.openModal(information, this.customerId)
+      .then(() => this.informationTableService.reload())
+      .catch(() => { });
   }
 
 }

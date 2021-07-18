@@ -2,6 +2,8 @@ import { Complain, Information, INFORNATIONS, COMPLAINS } from './../customer-ta
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject, Observable, of } from 'rxjs';
 import { tap, debounceTime, switchMap, delay, map } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ComplainComponent } from '../complain/complain.component';
 
 interface SearchResult {
   complainRequests: Complain[];
@@ -30,7 +32,7 @@ export class ComplainTableService {
     customerId: 0
   };
 
-  constructor() {
+  constructor(private ngbModal: NgbModal) {
     this._search$.pipe(
       tap(() => this._loading$.next(true)),
       debounceTime(200),
@@ -76,5 +78,20 @@ export class ComplainTableService {
         return requests.filter(request => request.customerId == customerId);
       })
     );
+  }
+
+  reload() {
+    this._search$.next();
+  }
+
+  openModal(complain: Complain | null = null, customerId: number) {
+    const modalRef = this.ngbModal.open(ComplainComponent, {
+      backdrop: true,
+      size: 'lg'
+    });
+
+    modalRef.componentInstance.complain = complain;
+    modalRef.componentInstance.customerId = customerId;
+    return modalRef.result;
   }
 }

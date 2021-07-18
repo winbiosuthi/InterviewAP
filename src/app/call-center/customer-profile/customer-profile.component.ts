@@ -1,9 +1,11 @@
+import { ComplainTableService } from './../complain-table/complain-table.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerProfileService } from './customer-profile.service';
 import { Customer } from '../customer-table/model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { InformationTableService } from '../information-table/information-table.service';
 
 @Component({
   selector: 'app-customer-profile',
@@ -16,7 +18,10 @@ export class CustomerProfileComponent implements OnInit {
   customerProfile$: Observable<Customer | undefined>;
   customerFormGroup: FormGroup;
 
-  constructor(private route: ActivatedRoute, private router: Router, private customerProfileService: CustomerProfileService) {
+  constructor(private route: ActivatedRoute, private router: Router,
+    private customerProfileService: CustomerProfileService,
+    private complainTableService: ComplainTableService,
+    private informationTableService: InformationTableService) {
     this.customerProfile$ = new Observable();
     this.customerId = 0;
     this.route.paramMap.subscribe(paramMap => {
@@ -58,6 +63,18 @@ export class CustomerProfileComponent implements OnInit {
         }
       });
     }
+  }
+
+  createComplain() {
+    this.complainTableService.openModal(null, this.customerId)
+      .then(() => this.complainTableService.reload())
+      .catch(() => { });
+  }
+
+  createInformation() {
+    this.informationTableService.openModal(null, this.customerId)
+      .then(() => this.informationTableService.reload())
+      .catch(() => { });
   }
 
 }

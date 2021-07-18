@@ -1,7 +1,9 @@
+import { InformationComponent } from './../information/information.component';
 import { INFORNATIONS, Information } from '../customer-table/model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { debounceTime, delay, map, switchMap, tap } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 interface SearchResult {
   informationRequest: Information[];
@@ -30,7 +32,7 @@ export class InformationTableService {
     customerId: 0
   };
 
-  constructor() {
+  constructor(private ngbModal: NgbModal) {
     this._search$.pipe(
       tap(() => this._loading$.next(true)),
       debounceTime(200),
@@ -76,5 +78,20 @@ export class InformationTableService {
         return requests.filter(request => request.customerId == customerId);
       })
     );
+  }
+
+  reload() {
+    this._search$.next();
+  }
+
+  openModal(information: Information | null = null, customerId: number) {
+    const modalRef = this.ngbModal.open(InformationComponent, {
+      backdrop: true,
+      size: 'lg'
+    });
+
+    modalRef.componentInstance.information = information;
+    modalRef.componentInstance.customerId = customerId;
+    return modalRef.result;
   }
 }
