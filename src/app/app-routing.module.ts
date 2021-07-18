@@ -1,3 +1,4 @@
+import { CustomerProfileComponent } from './call-center/customer-profile/customer-profile.component';
 import { CallCenterComponent } from './call-center/call-center.component';
 import { DataDictComponent } from './data-dict/data-dict.component';
 import { HomeComponent } from './home/home.component';
@@ -16,6 +17,14 @@ const routes: Routes = [
   {
     path: 'CallCenter',
     component: CallCenterComponent
+  },
+  {
+    path: 'CreateCustomer',
+    component: CustomerProfileComponent
+  },
+  {
+    path: 'Customer/:id',
+    component: CustomerProfileComponent
   }
 ];
 

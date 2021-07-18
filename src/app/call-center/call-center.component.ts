@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CallCenterComponent implements OnInit {
 
-  constructor() { }
+  searchTermFormControl: FormControl;
+
+  constructor() {
+    this.searchTermFormControl = new FormControl(null);
+  }
 
   ngOnInit(): void {
   }

@@ -3,6 +3,12 @@
         <h3>Call Center</h3>
     </div>
     <div class="search-box text-center px-5 mt-4">
-        <input type="text" class="form-control" placeholder="Search">
+        <input type="text" class="form-control" placeholder="Search" [formControl]="searchTermFormControl">
+    </div>
+    <div class="search-result text-center px-5 mt-4">
+        <div class="d-flex flex-row-reverse">
+            <button class="btn btn-link" routerLink="/CreateCustomer">Create Customer</button>
+        </div>
+        <customer-table [searchTermFormControl]="searchTermFormControl"></customer-table>
     </div>
 </div>

@@ -1,0 +1,31 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Type</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Submit Date</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let request of complainRequest$ | async; let i = index">
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{ request.complainType }}</td>
+            <td>{{ request.subject }}</td>
+            <td>{{ request.submitDate | date: 'dd/MM/yyyy hh:mm:ss' }}</td>
+            <td>{{ request.status }}</td>
+            <td>
+                <span>
+                    <a class="btn-link" style="cursor: pointer;">Detail</a>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="complainTableService.page" [pageSize]="complainTableService.pageSize">
+    </ngb-pagination>
+</div>
