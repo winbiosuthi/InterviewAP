@@ -45,7 +45,6 @@ import { AddressComponent } from './call-center/address/address.component';
     NgSelectModule,
     NgbModule
   ],
-  exports: [ AddressComponent ],
   providers: [
     
   ],
