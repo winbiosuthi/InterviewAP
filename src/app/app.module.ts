@@ -48,6 +48,6 @@ import { AddressComponent } from './call-center/address/address.component';
   providers: [
     
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, AddressComponent]
 })
 export class AppModule { }
