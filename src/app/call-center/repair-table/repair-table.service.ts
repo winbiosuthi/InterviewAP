@@ -1,7 +1,9 @@
+import { RepairComponent } from './../repair/repair.component';
 import { Complain, COMPLAINS, Repairing, REPAIRINGS } from './../customer-table/model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject, Observable, of } from 'rxjs';
 import { tap, debounceTime, switchMap, delay, map } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 interface SearchResult {
   repairRequests: Repairing[];
@@ -30,7 +32,7 @@ export class RepairTableService {
     customerId: 0
   };
 
-  constructor() {
+  constructor(private ngbModal: NgbModal) {
     this._search$.pipe(
       tap(() => this._loading$.next(true)),
       debounceTime(200),
@@ -76,5 +78,20 @@ export class RepairTableService {
         return requests.filter(request => request.customerId == customerId);
       })
     );
+  }
+
+  reload() {
+    this._search$.next();
+  }
+
+  openModal(repair: Repairing | null = null, customerId: number) {
+    const modalRef = this.ngbModal.open(RepairComponent, {
+      backdrop: true,
+      size: 'lg'
+    });
+
+    modalRef.componentInstance.repair = repair;
+    modalRef.componentInstance.customerId = customerId;
+    return modalRef.result;
   }
 }

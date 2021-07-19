@@ -17,6 +17,8 @@ import { ComplainTableComponent } from './call-center/complain-table/complain-ta
 import { RepairTableComponent } from './call-center/repair-table/repair-table.component';
 import { ComplainComponent } from './call-center/complain/complain.component';
 import { InformationComponent } from './call-center/information/information.component';
+import { RepairComponent } from './call-center/repair/repair.component';
+import { AddressComponent } from './call-center/address/address.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { InformationComponent } from './call-center/information/information.comp
     ComplainTableComponent,
     RepairTableComponent,
     ComplainComponent,
-    InformationComponent
+    InformationComponent,
+    RepairComponent,
+    AddressComponent
   ],
   imports: [
     CommonModule,

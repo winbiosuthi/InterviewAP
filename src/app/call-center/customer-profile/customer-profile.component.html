@@ -56,6 +56,17 @@
         </div>
     </div>
     <ng-container *ngIf="customerProfile$ | async">
+        <h3>Addresses</h3>
+        <div class="address-list p-4">
+            <div class="d-flex flex-row">
+                <button class="btn btn-primary" (click)="openAddress(null)">Add Address</button>
+            </div>
+            <ng-container *ngFor="let address of addressesFormated$ | async">
+                <div class="d-flex flex-row border rounded text-wrap my-2 p-4 col-md-6" style="cursor: pointer;" (click)="openAddress(address.address)">{{address.textFormat}}
+                </div>
+            </ng-container>
+        </div>
+
         <div class="header">
             <h3>Customer Request</h3>
         </div>
@@ -81,7 +92,7 @@
             <h5>Repairing Request</h5>
             <div class="search-result text-center px-5 mt-4">
                 <div class="d-flex flex-row-reverse">
-                    <button class="btn btn-link">Create</button>
+                    <button class="btn btn-link" (click)="createRepair()">Create</button>
                 </div>
                 <repair-table [customerId]="customerId"></repair-table>
             </div>

@@ -20,8 +20,15 @@ export class RepairTableComponent implements OnInit {
     this.total$ = repairTableService.total$;
     this.customerId = 0;
   }
+
   ngOnInit(): void {
     this.repairTableService.customerId = this.customerId;
+  }
+
+  openModal(repair: Repairing) {
+    this.repairTableService.openModal(repair, this.customerId)
+      .then(() => this.repairTableService.reload())
+      .catch(() => { });
   }
 
 }

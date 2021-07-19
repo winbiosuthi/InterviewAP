@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">Complain Details</h4>
+    <h4 class="modal-title">Information Details</h4>
     <button type="button" class="close" aria-label="Close" (click)="dismiss()">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -8,8 +8,8 @@
     <div [formGroup]="informationFormGroup">
         <div class="d-flex flex-row flex-wrap">
             <div class="form-group col-md-6">
-                <label for="complainType">Complain Type</label>
-                <ng-select id="complainType" [items]="['Complain Type 1', 'Complain Type 2']" formControlName="informationType" [readonly]="readonly"></ng-select>
+                <label for="informationType">Information Type</label>
+                <ng-select id="informationType" [items]="['Information Type 1', 'Information Type 2']" formControlName="informationType" [readonly]="readonly"></ng-select>
             </div>
         </div>
         <div class="d-flex flex-row flex-wrap">

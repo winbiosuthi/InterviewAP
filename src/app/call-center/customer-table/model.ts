@@ -27,6 +27,7 @@ export interface Address {
   updateDate: Date;
   customerId: number;
   projectId: number;
+  projectName?: string;
 }
 
 export interface Project {
@@ -154,7 +155,7 @@ export const ADDRESSES: Address[] = [
     updateDate: new Date(2021, 0, 31, 9, 30, 0, 0)
   },
   {
-    id: 1,
+    id: 2,
     customerId: 1,
     projectId: 2,
     addressNumber: '202/2',
@@ -221,7 +222,7 @@ export const REPAIRINGS: Repairing[] = [
   {
     id: 3,
     customerId: 1,
-    repairingType: 'Repair Type 1',
+    repairingType: 'Repairing Type 1',
     subject: 'Repair 1',
     detail: 'Repair 1 Detail',
     problem: 'Problem',

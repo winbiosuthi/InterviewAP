@@ -1,4 +1,7 @@
-import { Customer } from '../customer-table/model';
+import { AddressComponent } from './../address/address.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Address, PROJECTS } from './../customer-table/model';
+import { ADDRESSES, Customer } from '../customer-table/model';
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,7 +12,7 @@ import { CUSTOMERS } from '../customer-table/model';
 })
 export class CustomerProfileService {
 
-  constructor() { }
+  constructor(private ngbModal: NgbModal) { }
 
   getCustomerById(id: number) {
     return of(CUSTOMERS).pipe(
@@ -17,6 +20,14 @@ export class CustomerProfileService {
         return customers.find(customer => customer.id == id);
       })
     );
+  }
+
+  getAddresses(id: number) {
+    return of(ADDRESSES).pipe(
+      map(addresses => {
+        return addresses.filter(address => address.customerId == id);
+      })
+    )
   }
 
   submitCustomer(submitCustomer: Customer) {
@@ -51,5 +62,16 @@ export class CustomerProfileService {
       }
       subscribe.unsubscribe();
     });
+  }
+
+  openAddressModal(address: Address | null = null, customerId: number) {
+    const modalRef = this.ngbModal.open(AddressComponent, {
+      backdrop: true,
+      size: 'lg'
+    });
+
+    modalRef.componentInstance.address = address;
+    modalRef.componentInstance.customerId = customerId;
+    return modalRef.result;
   }
 }

@@ -1,11 +1,14 @@
+import { Address, PROJECTS, Project, ADDRESSES } from './../customer-table/model';
+import { RepairTableService } from './../repair-table/repair-table.service';
 import { ComplainTableService } from './../complain-table/complain-table.service';
-import { Observable } from 'rxjs';
+import { from, Observable, of, Subject } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerProfileService } from './customer-profile.service';
 import { Customer } from '../customer-table/model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InformationTableService } from '../information-table/information-table.service';
+import { map, mergeMap, switchMap, toArray } from 'rxjs/operators';
 
 @Component({
   selector: 'app-customer-profile',
@@ -16,13 +19,18 @@ export class CustomerProfileComponent implements OnInit {
 
   customerId: number;
   customerProfile$: Observable<Customer | undefined>;
+  addresses$: Observable<Address[]>;
+  addressesFormated$: Observable<{ address: Address, textFormat: string }[]>;
   customerFormGroup: FormGroup;
 
   constructor(private route: ActivatedRoute, private router: Router,
     private customerProfileService: CustomerProfileService,
     private complainTableService: ComplainTableService,
-    private informationTableService: InformationTableService) {
+    private informationTableService: InformationTableService,
+    private repairTableService: RepairTableService) {
     this.customerProfile$ = new Observable();
+    this.addresses$ = new Observable();
+    this.addressesFormated$ = new Observable();
     this.customerId = 0;
     this.route.paramMap.subscribe(paramMap => {
       let customerIdParam = paramMap.get('id');
@@ -46,6 +54,8 @@ export class CustomerProfileComponent implements OnInit {
         this.customerFormGroup.patchValue(customerProfile);
       }
     });
+
+    this.getAddress();
   }
 
   onSubmit() {
@@ -75,6 +85,46 @@ export class CustomerProfileComponent implements OnInit {
     this.informationTableService.openModal(null, this.customerId)
       .then(() => this.informationTableService.reload())
       .catch(() => { });
+  }
+
+  createRepair() {
+    this.repairTableService.openModal(null, this.customerId)
+      .then(() => this.repairTableService.reload())
+      .catch(() => { });
+  }
+
+  openAddress(address: Address | null) {
+    this.customerProfileService.openAddressModal(address, this.customerId)
+      .then(() => {
+        this.getAddress();
+      })
+      .catch(() => { });
+  }
+
+  private getAddress() {
+    this.addresses$ = this.customerProfileService.getAddresses(this.customerId);
+    this.addressesFormated$ = this.addresses$.pipe(
+      mergeMap((addresses) =>
+        from(addresses).pipe(
+          mergeMap(address => this.getProjectById(address.projectId).pipe(
+            map(project => ({ address, textFormat: this.addressViewFormat(address, project) }))
+          )),
+          toArray()
+        )
+      )
+    )
+  }
+
+  private getProjectById(id: number) {
+    return of(PROJECTS).pipe(
+      map(projects => {
+        return projects.find(project => project.id == id);
+      })
+    );
+  }
+
+  private addressViewFormat(address: Address, project: Project | undefined) {
+    return `${project?.projectName} ${address.addressNumber} ${address.street ? address.street : ''} ${address.subDistrict} ${address.district} ${address.province} ${address.zipCode}`;
   }
 
 }

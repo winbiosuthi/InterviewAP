@@ -1,0 +1,67 @@
+<div class="modal-header">
+    <h4 class="modal-title">Address</h4>
+    <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div [formGroup]="addressFormGroup">
+        <div class="d-flex flex-row flex-wrap">
+            <div class="form-group col-md-6">
+                <label for="project">Project</label>
+                <ng-select id="project" [items]="projects$ | async" bindLabel="projectName" bindValue="id" formControlName="projectId"></ng-select>
+            </div>
+        </div>
+        <div class="d-flex flex-row flex-wrap">
+            <div class="form-group col-md-3">
+                <label for="addressNumber">Address Number</label>
+                <input type="text" class="form-control" id="addressNumber" formControlName="addressNumber">
+            </div>
+            <div class="form-group col-md-9">
+                <label for="street">Street</label>
+                <input type="text" class="form-control" id="street" formControlName="street">
+            </div>
+        </div>
+        <div class="d-flex flex-row flex-wrap">
+            <div class="form-group col-md-6">
+                <label for="subDistrict">Sub District</label>
+                <ng-select id="subDistrict" [items]="['Sub District 1', 'Sub District 2', 'Sub District 3']" formControlName="subDistrict"></ng-select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="district">District</label>
+                <ng-select id="district" [items]="['District 1', 'District 2', 'District 3']" formControlName="district"></ng-select>
+            </div>
+        </div>
+        <div class="d-flex flex-row flex-wrap">
+            <div class="form-group col-md-6">
+                <label for="province">Province</label>
+                <ng-select id="province" [items]="['Province 1', 'Province 2']" formControlName="province"></ng-select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="zipCode">Zip Code</label>
+                <input type="text" maxlength="5" class="form-control" id="zipCode" formControlName="zipCode">
+            </div>
+        </div>
+        <div class="d-flex flex-row flex-wrap">
+            <div class="form-group col-md-12">
+                <label>Status</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="active-status" value="active" formControlName="status">
+                    <label class="form-check-label" for="active-status">
+                        Active
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="inactive-status" value="inactive" formControlName="status">
+                    <label class="form-check-label" for="active-status">
+                        Inactive
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary col-md-3" (click)="dismiss()">Cancle</button>
+    <button type="button" class="btn btn-primary col-md-3" (click)="submit()">Save</button>
+</div>

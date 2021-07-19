@@ -1,0 +1,56 @@
+<div class="modal-header">
+    <h4 class="modal-title">Repairing Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div [formGroup]="repairFormGroup">
+        <div class="d-flex flex-row flex-wrap">
+            <div class="form-group col-md-6">
+                <label for="repairingType">Repairing Type</label>
+                <ng-select id="repairingType" [items]="['Repairing Type 1', 'Repairing Type 2']" formControlName="repairingType" [readonly]="readonly"></ng-select>
+            </div>
+        </div>
+        <div class="d-flex flex-row flex-wrap">
+            <div class="form-group col-md-12">
+                <label for="subject">Subject</label>
+                <input type="text" class="form-control" id="subject" formControlName="subject" [readonly]="readonly">
+            </div>
+        </div>
+        <div class="d-flex flex-row flex-wrap">
+            <div class="form-group col-md-12">
+                <label for="detail">Detail</label>
+                <textarea class="form-control" id="detail" formControlName="detail" [readonly]="readonly"></textarea>
+            </div>
+        </div>
+        <div class="d-flex flex-row flex-wrap">
+            <div class="form-group col-md-12">
+                <label for="problem">Problem</label>
+                <textarea class="form-control" id="problem" formControlName="problem" [readonly]="readonly"></textarea>
+            </div>
+        </div>
+        <div class="d-flex flex-row flex-wrap">
+            <div class="form-group col-md-6">
+                <label for="project">Project</label>
+                <ng-select id="project" [items]="projects$ | async" bindLabel="projectName" bindValue="id" formControlName="projectId" [readonly]="readonly"></ng-select>
+            </div>
+        </div>
+        <div class="d-flex flex-row flex-wrap">
+            <div class="form-group col-md-12">
+                <ng-container *ngFor="let address of addressesFormated$ | async">
+                    <div class="d-flex flex-row border rounded text-wrap my-2 p-4 col-md-12">
+                        <input class="form-check-input" type="radio" [id]="'address_' + address.address.id" [value]="address.address.id" formControlName="addressId">
+                        <label class="form-check-label" [for]="'address_' + address.address.id">
+                            {{address.textFormat}}
+                        </label>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary col-md-3" (click)="dismiss()">Cancle</button>
+    <button *ngIf="!readonly" type="button" class="btn btn-primary col-md-3" (click)="submit()">Save</button>
+</div>
