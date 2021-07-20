@@ -42,7 +42,7 @@ export class RepairComponent implements OnInit {
     this.repairFormGroup.get('projectId')?.valueChanges.subscribe(value => {
       this.addressesFormated$ = this.getAddress(value);
     });
-    
+
     if (this.repair) {
       this.readonly = true;
       this.repairFormGroup.disable();
@@ -114,6 +114,14 @@ export class RepairComponent implements OnInit {
         )
       })
     )
+
+    // return /* getCompanyProfile: Observable<CompanyProfile> */of({ company: 1, statusId: 2 }).pipe(
+    //   mergeMap(company => /* getStatusMasterById */ of({ ststusId: 2, statusName: 'active' }).pipe(
+    //     map(statusObj => {
+    //       return { company: company.company, statusId: statusObj.ststusId, statusName: statusObj.statusName }
+    //     })
+    //   ))
+    // )
   }
 
   private addressViewFormat(address: Address, project: Project | undefined) {
